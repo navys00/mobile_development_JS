@@ -12,8 +12,14 @@ export default function App() {
       <View style={styles.blue_box}></View>
       <StatusBar style='auto'></StatusBar>
     </View>
-    <View style={styles.container}>
-    <View style={styles.blue_box}>
+    <View style={{width:200,
+      height:150,
+      borderColor:'grey',
+      borderWidth: 1,
+      justifyContent:'center',
+      alignItems: 'center',
+    }}>
+    <View style={[styles.blue_box]}>
       <Text style={{color:'white'}}>Квадрат</Text>
     </View>
       </View>
@@ -34,9 +40,16 @@ export default function App() {
         <View style={{flexDirection:'column',flex: 1}}>
         <View style={{flex: -1, width:50, height:50, backgroundColor: 'green',margin: 5}} />
         <View style={{flex: -1, width:50, height:50, backgroundColor: 'pink',margin: 5}} />
-        </View>
-        
-               
+        </View>  
+    </View>
+    <View style={styles.container_small}>
+          <View style={[
+          styles.orange_box,
+          {
+            transform: [{rotate:'45deg',},{scaleX:0.5},{translateY:50}],
+          },
+        ]}></View>
+    
     </View>
     </View>
   );
@@ -50,6 +63,15 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  container_small:{
+    width:200,
+      height:200,
+      borderColor:'grey',
+      alignItems: 'center',
+      justifyContent:'center',
+      borderWidth: 1,
+
   },
   red_box:{
     width:50,
@@ -71,7 +93,7 @@ const styles = StyleSheet.create({
     width:50,
     height:50,
     position:'absolute',
-    bottom:150,
+    bottom:100,
     backgroundColor: 'green',
   },
   white_box:{
