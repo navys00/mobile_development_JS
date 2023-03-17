@@ -1,8 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
-import React,{Component} from 'react';
-import { StyleSheet, Text, View} from 'react-native';
-
+import React,{useState} from 'react';
+import { Button, StyleSheet, Text, TextInput, View,Alert} from 'react-native';
+    
 export default function App() {
+    const [number1, setNumber1] = useState(0);
+    const [number2, setNumber2] = useState(0);
+    const [total, setTotal] = useState(number1 + number2);
+const func=()=>{
+  const newTotal = number1 + number2;
+        setTotal(newTotal);
+        console.log(newTotal);
+
+};
   return (
     <View>
     <View style={styles.container} >
@@ -51,6 +60,26 @@ export default function App() {
         ]}></View>
     
     </View>
+      <View style={{width:400,
+        height:300,
+        borderColor:'grey',
+        borderWidth: 1}}>
+        <TextInput type='number' placeholder="0"
+        value={number1}
+        onChangeText={v => {
+            setNumber1(Number.parseInt(v));
+        }} style={{height:30,margin:10,borderColor:'black',borderWidth:2}}></TextInput>
+
+        <TextInput type="number"
+        placeholder="0"
+        value={number2}
+        onChange={e => {
+            setNumber2(Number.parseInt(e.nativeEvent.text));
+        }} style={{height:30,margin:10,borderColor:'black',borderWidth:2}}></TextInput>
+        <Button title="подтвердить" onPress={func}></Button>
+
+        <TextInput></TextInput>
+      </View>
     </View>
   );
 }
