@@ -99,8 +99,6 @@ const func=()=>{
         <Animated.View style={[{transform:[{scale:startValue},{translateY:70}]}]}>
         <View style={{width:50,
           height:50,
-          
-          bottom:-1,
           flex:1,
          position:'absolute',
           backgroundColor: 'black',}} ></View>
