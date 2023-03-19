@@ -1,8 +1,23 @@
 import { StatusBar } from 'expo-status-bar';
-import React,{useState} from 'react';
-import { Button, StyleSheet, Text, TextInput, View,Alert} from 'react-native';
-    
+import React,{useRef,useEffect,useState} from 'react';
+import { Button, StyleSheet, Text, TextInput, View,Animated} from 'react-native';
+
+
 export default function App() {
+
+  const startValue = useRef(new Animated.Value(0.1)).current;
+  
+  
+
+  useEffect(() => {
+    Animated.timing(startValue, {
+      toValue: 2,
+      duration: 10000,
+      useNativeDriver: true,
+    }).start();
+  }, [startValue]);
+
+
     const [number1, setNumber1] = useState(0);
     const [number2, setNumber2] = useState(0);
     const [total, setTotal] = useState(number1 + number2);
@@ -15,7 +30,7 @@ const func=()=>{
   return (
     <View>
     <View style={styles.container} >
-      
+    
       <View style={styles.red_box}></View>
       <View style={styles.green_box}></View>
       <View style={styles.blue_box}></View>
@@ -28,6 +43,7 @@ const func=()=>{
       justifyContent:'center',
       alignItems: 'center',
     }}>
+    
     <View style={[styles.blue_box]}>
       <Text style={{color:'white'}}>Квадрат</Text>
     </View>
@@ -38,7 +54,7 @@ const func=()=>{
       borderWidth: 1,
       flexDirection:'row',flex: 1,
     }}>    
-
+        
         <View style={{flexDirection:'column',flex: 1}}>
         <View style={{flex: -1,width:50, height:50, backgroundColor: 'red',margin: 5}} />
         <View style={{flex: -1, width:50, height:50, backgroundColor: 'black',margin: 5}} /> 
@@ -77,8 +93,18 @@ const func=()=>{
             setNumber2(Number.parseInt(e.nativeEvent.text));
         }} style={{height:30,margin:10,borderColor:'black',borderWidth:2}}></TextInput>
         <Button title="подтвердить" onPress={func}></Button>
+      </View>
 
-        <TextInput></TextInput>
+      <View style={styles.container} >
+        <Animated.View style={[{transform:[{scale:startValue},{translateY:70}]}]}>
+        <View style={{width:50,
+          height:50,
+          
+          bottom:-1,
+          flex:1,
+         position:'absolute',
+          backgroundColor: 'black',}} ></View>
+        </Animated.View>
       </View>
     </View>
   );
