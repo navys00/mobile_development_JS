@@ -46,17 +46,18 @@ const func=()=>{
       alignSelf:'flex-start',
       left:0,
       top:0,
-      width:'45%',
-      height:'45%',
+      width:160,
+      height:160,
       position:'absolute',
       backgroundColor: 'red'}}>
       </View>
       <View style={{ flex:1,
         marginLeft:'auto',
         marginRight:'auto',
-        right:40,
-        width:'45%',
-        height:'45%',
+        right:80,
+        top:80,
+        width:160,
+        height:160,
         position:'absolute',
         backgroundColor: 'green'}}>
         </View>
@@ -64,8 +65,8 @@ const func=()=>{
           alignSelf:'flex-start',
           right:0,
           top:0,
-          width:'45%',
-          height:'45%',
+          width:160,
+          height:160,
           position:'absolute',
           backgroundColor: 'blue'}}><Text style={{color:'white',marginTop:'auto',
           marginBottom:'auto',alignSelf:'center'}}>Квадрат</Text>
@@ -76,21 +77,19 @@ const func=()=>{
     </View>
     
    <View style={{
-     width:180,
-     height:180,
-      borderColor:'grey',
-      borderWidth: 1,
+     width:250,
+     height:250,
       flexDirection:'row',
     }}>    
         
-        <View style={{width:'33%',height:'33%',flexDirection:'column',alignItems:'center',padding:4}}>
+        <View style={{width:'33%',height:'33%',flexDirection:'column',alignItems:'center',margin:4}}>
         <View style={{width:'100%', height:'100%', backgroundColor: 'red',margin:4}} />
         <View style={{width:'100%', height:'100%', backgroundColor: 'black',margin:4}} /> 
         </View>
-        <View style={{width:'33%',height:'33%',flexDirection:'column',alignContent:'center',padding:4}}>
+        <View style={{width:'33%',height:'33%',flexDirection:'column',alignContent:'center',margin:4}}>
         <View style={{width:'100%', height:'100%', backgroundColor: 'darkorange',margin:4,alignSelf:'center'}} />
         </View>
-        <View style={{width:'33%',height:'33%',flexDirection:'column',alignItems:'center',padding:4}}>
+        <View style={{width:'33%',height:'33%',flexDirection:'column',alignItems:'center',margin:4}}>
         <View style={{ width:'100%', height:'100%', backgroundColor: 'green',margin:4}} />
         <View style={{ width:'100%', height:'100%', backgroundColor: 'pink',margin:4}} />
         </View>  
@@ -106,8 +105,7 @@ const func=()=>{
     </View>
       <View style={{width:400,
         height:300,
-        borderColor:'grey',
-        borderWidth: 1}}>
+        }}>
         <TextInput type='number' placeholder="0"
         value={number1}
         onChangeText={v => {
@@ -126,9 +124,8 @@ const func=()=>{
       <View style={{
         height:500,
         width:500,
-        borderColor:'grey',
-        borderWidth:1,
-        //flex: 1,
+       
+    
         justifyContent: 'flex-start',
         alignItems: 'center',}} >
         <Animated.View style={[{transform:[{scale:startValueSC},{translateY:startValueY}]}]}>
@@ -146,18 +143,16 @@ const styles = StyleSheet.create({
   container: {
     width:400,
     height:400,
-    borderColor:'grey',
-    borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
   container_small:{
     // width:200,
       height:200,
-      borderColor:'grey',
+     
       alignItems: 'center',
       justifyContent:'center',
-      borderWidth: 1,
+     
 
   },
   red_box:{
