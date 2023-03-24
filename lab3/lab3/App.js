@@ -5,17 +5,28 @@ import { Button, StyleSheet, Text, TextInput, View,Animated} from 'react-native'
 
 export default function App() {
 
-  const startValue = useRef(new Animated.Value(0.1)).current;
-  
-  
+  //const startValue = useRef(new Animated.Value(0.1)).current;
+
+  const startValueY = useRef(new Animated.Value(0)).current;
+  const startValueSC = useRef(new Animated.Value(0.1)).current;
+  useEffect(() => {
+    Animated.timing(startValueY, {
+      toValue: 150,
+      duration: 10000,
+      useNativeDriver: true,
+    }).start();
+  }, [startValueY]);
 
   useEffect(() => {
-    Animated.timing(startValue, {
+    Animated.timing(startValueSC, {
       toValue: 2,
       duration: 10000,
       useNativeDriver: true,
     }).start();
-  }, [startValue]);
+  }, [startValueSC]);
+  
+
+ 
 
 
     const [number1, setNumber1] = useState(0);
@@ -29,42 +40,59 @@ const func=()=>{
 };
   return (
     <View>
-    <View style={styles.container} >
+    <View style={[styles.container]} >
     
-      <View style={styles.red_box}></View>
-      <View style={styles.green_box}></View>
-      <View style={styles.blue_box}></View>
+    <View style={{ flex:1,
+      alignSelf:'flex-start',
+      left:0,
+      top:0,
+      width:'45%',
+      height:'45%',
+      position:'absolute',
+      backgroundColor: 'red'}}>
+      </View>
+      <View style={{ flex:1,
+        marginLeft:'auto',
+        marginRight:'auto',
+        right:40,
+        width:'45%',
+        height:'45%',
+        position:'absolute',
+        backgroundColor: 'green'}}>
+        </View>
+        <View style={{ flex:1,
+          alignSelf:'flex-start',
+          right:0,
+          top:0,
+          width:'45%',
+          height:'45%',
+          position:'absolute',
+          backgroundColor: 'blue'}}><Text style={{color:'white',marginTop:'auto',
+          marginBottom:'auto',alignSelf:'center'}}>Квадрат</Text>
+          </View>
+      
+      
       <StatusBar style='auto'></StatusBar>
     </View>
-    <View style={{width:200,
-      height:150,
-      borderColor:'grey',
-      borderWidth: 1,
-      justifyContent:'center',
-      alignItems: 'center',
-    }}>
     
-    <View style={[styles.blue_box]}>
-      <Text style={{color:'white'}}>Квадрат</Text>
-    </View>
-      </View>
-    <View style={{width:200,
-      height:150,
+   <View style={{
+     width:180,
+     height:180,
       borderColor:'grey',
       borderWidth: 1,
-      flexDirection:'row',flex: 1,
+      flexDirection:'row',
     }}>    
         
-        <View style={{flexDirection:'column',flex: 1}}>
-        <View style={{flex: -1,width:50, height:50, backgroundColor: 'red',margin: 5}} />
-        <View style={{flex: -1, width:50, height:50, backgroundColor: 'black',margin: 5}} /> 
+        <View style={{width:'33%',height:'33%',flexDirection:'column',alignItems:'center',padding:4}}>
+        <View style={{width:'100%', height:'100%', backgroundColor: 'red',margin:4}} />
+        <View style={{width:'100%', height:'100%', backgroundColor: 'black',margin:4}} /> 
         </View>
-        <View style={{flexDirection:'column',flex: 1}}>
-        <View style={{flex: -1, width:50, height:50, backgroundColor: 'darkorange',margin: 5}} />
+        <View style={{width:'33%',height:'33%',flexDirection:'column',alignContent:'center',padding:4}}>
+        <View style={{width:'100%', height:'100%', backgroundColor: 'darkorange',margin:4,alignSelf:'center'}} />
         </View>
-        <View style={{flexDirection:'column',flex: 1}}>
-        <View style={{flex: -1, width:50, height:50, backgroundColor: 'green',margin: 5}} />
-        <View style={{flex: -1, width:50, height:50, backgroundColor: 'pink',margin: 5}} />
+        <View style={{width:'33%',height:'33%',flexDirection:'column',alignItems:'center',padding:4}}>
+        <View style={{ width:'100%', height:'100%', backgroundColor: 'green',margin:4}} />
+        <View style={{ width:'100%', height:'100%', backgroundColor: 'pink',margin:4}} />
         </View>  
     </View>
     <View style={styles.container_small}>
@@ -95,13 +123,19 @@ const func=()=>{
         <Button title="подтвердить" onPress={func}></Button>
       </View>
 
-      <View style={styles.container} >
-        <Animated.View style={[{transform:[{scale:startValue},{translateY:70}]}]}>
-        <View style={{width:50,
-          height:50,
-          flex:1,
-         position:'absolute',
-          backgroundColor: 'black',}} ></View>
+      <View style={{
+        height:500,
+        width:500,
+        borderColor:'grey',
+        borderWidth:1,
+        //flex: 1,
+        justifyContent: 'flex-start',
+        alignItems: 'center',}} >
+        <Animated.View style={[{transform:[{scale:startValueSC},{translateY:startValueY}]}]}>
+        <View style={{
+          height: 50,
+          width: 50,
+          backgroundColor: 'green',}} ></View>
         </Animated.View>
       </View>
     </View>
@@ -111,14 +145,14 @@ const func=()=>{
 const styles = StyleSheet.create({
   container: {
     width:400,
-    height:300,
+    height:400,
     borderColor:'grey',
     borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
   container_small:{
-    width:200,
+    // width:200,
       height:200,
       borderColor:'grey',
       alignItems: 'center',
@@ -127,26 +161,29 @@ const styles = StyleSheet.create({
 
   },
   red_box:{
+    flex:1,
     width:50,
     height:50,
     position:'absolute',
-    left:124,
+    //left:124,
     backgroundColor: 'red',
   },
   blue_box:{
+    flex:1,
     width:50,
     height:50,
     position:'absolute',
-    right:140,
-    alignItems: 'center',
-    justifyContent: 'center',
+    //right:140,
+    //alignItems: 'center',
+    //justifyContent: 'center',
     backgroundColor: 'blue',
   },
   green_box:{
+    flex:1,
     width:50,
     height:50,
     position:'absolute',
-    bottom:100,
+    //bottom:100,
     backgroundColor: 'green',
   },
   white_box:{
