@@ -1,7 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View,Button, TextInput,Pressable,TouchableOpacity,Animated,TouchableWithoutFeedback,Picker,Switch} from 'react-native';
 import { useState,useRef,useEffect } from 'react';
+import DateTimePicker from '@react-native-community/datetimepicker';
+
 import Slider from '@react-native-community/slider';
+import CalendarPicker from 'react-native-calendar-picker';
+
 const App=()=> {
   const[selectedobj,setSelectedobj]=useState('танк');
   console.log(selectedobj);
@@ -16,8 +20,12 @@ const style={
 };
   const [open,setopen]=useState(false);
   const [value,setValue]=useState(0);
+
+  const [slidervalue,setslidervalue]=useState(0);
+
+  const [selectedEndDate, setSelectedEndDate] = useState(null);
   return (
-    <View style={{alignItems:'flex-start'}} >
+    <View style={{alignItems:'flex-end'}} >
     <View style={{width:100,height:100,alignItems:'center',borderWidth:2,borderColor:'black'}} >
     <TextInput type='number' placeholder='input number' placeholderTextColor={'grey'}></TextInput>
     </View>
@@ -54,10 +62,16 @@ const style={
       </Switch>
       <Text>{tmp}</Text>
     </View>
+    <View style={{alignItems:'center'}} >
+    <Slider style={{width:100,height:30}} onValueChange={(slidervalue)=>setslidervalue(slidervalue)}
+        
+      />
+      <Text>{slidervalue}</Text>
+    </View>
     <View style={{width:100,height:100,alignItems:'center',borderWidth:2,borderColor:'black'}} >
-     <Slider >
+    <CalendarPicker >
 
-     </Slider>
+    </CalendarPicker>
     </View>
     </View>
 
