@@ -1,11 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View,Button, TextInput,Pressable,TouchableOpacity,Animated,TouchableWithoutFeedback,Picker,Switch} from 'react-native';
 import { useState,useRef,useEffect } from 'react';
-import DateTimePicker from '@react-native-community/datetimepicker';
-
 import Slider from '@react-native-community/slider';
 import CalendarPicker from 'react-native-calendar-picker';
-
+import {TimePicker} from 'react-time-picker';
 const App=()=> {
   const[selectedobj,setSelectedobj]=useState('танк');
   console.log(selectedobj);
@@ -23,7 +21,16 @@ const style={
 
   const [slidervalue,setslidervalue]=useState(0);
 
-  const [selectedEndDate, setSelectedEndDate] = useState(null);
+  const [selectedStartDate, setSelectedStartDate] = useState(null);
+  const startDate = selectedStartDate ? selectedStartDate.format('YYYY-MM-DD').toString() : '';
+  console.log(startDate)
+  const [hours, setHours] = useState(0);
+  const [minutes, setMinutes] = useState(0);
+  const handleChange = ( hours, minutes) => {
+    setHours(hours);
+    setMinutes(minutes);
+    console.log(hours,minutes)
+  };
   return (
     <View style={{alignItems:'flex-end'}} >
     <View style={{width:100,height:100,alignItems:'center',borderWidth:2,borderColor:'black'}} >
@@ -68,10 +75,15 @@ const style={
       />
       <Text>{slidervalue}</Text>
     </View>
-    <View style={{width:100,height:100,alignItems:'center',borderWidth:2,borderColor:'black'}} >
-    <CalendarPicker >
-
+    <View style={{width:200,height:200,alignItems:'flex-start'}} >
+    <CalendarPicker width={400} height={400} onDateChange={setSelectedStartDate} >
+          <Text>{startDate} </Text>
     </CalendarPicker>
+    </View>
+    <View style={{width:100,height:100,alignItems:'center'}} >
+    <TimePicker onChange={handleChange}>
+
+    </TimePicker>
     </View>
     </View>
 
