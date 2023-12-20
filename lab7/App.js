@@ -7,6 +7,9 @@ import Secondomer from './secondomer';
 export default function App() {
   return (
     <View style={styles.container}>
+    <TrafficLightApp></TrafficLightApp>
+    <String_degrees></String_degrees>
+    
       <Secondomer  ></Secondomer>
     </View>
   );
